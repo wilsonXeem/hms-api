@@ -1,0 +1,27 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1777471756122,
+      "tag": "0000_charming_mastermind",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1777553518634,
+      "tag": "0001_smooth_mach_iv",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1777616553586,
+      "tag": "0002_steep_apocalypse",
+      "breakpoints": true
+    }
+  ]
+}
