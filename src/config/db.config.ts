@@ -10,6 +10,7 @@ const client = postgres(connectionString, {
   connect_timeout: 10,
   max_lifetime: 3600,
   prepare: false,
+  ssl: process.env.DB_SSL === 'true' ? 'require' : undefined,
   onnotice: () => {},
   onparameter: () => {},
   transform: {

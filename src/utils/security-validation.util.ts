@@ -28,14 +28,16 @@ export class SecurityValidator {
       }
     }
 
-    // Check HTTPS configuration in production
+    // HTTPS is commonly terminated by a platform/load balancer (Render, Fly,
+    // Heroku, etc.). Only require local cert files when this Node process is
+    // explicitly configured to own HTTPS termination.
     if (process.env.NODE_ENV === 'production') {
-      if (process.env.FORCE_HTTPS !== 'true') {
-        errors.push('FORCE_HTTPS must be set to true in production');
+      if (process.env.FORCE_HTTPS === 'true' && (!process.env.SSL_CERT_PATH || !process.env.SSL_KEY_PATH)) {
+        errors.push('SSL certificate paths must be configured when FORCE_HTTPS is true');
       }
-      
-      if (!process.env.SSL_CERT_PATH || !process.env.SSL_KEY_PATH) {
-        errors.push('SSL certificate paths must be configured in production');
+
+      if (process.env.FORCE_HTTPS !== 'true') {
+        warnings.push('FORCE_HTTPS is not enabled in the Node process; ensure the hosting platform terminates HTTPS');
       }
     }
 

@@ -20,6 +20,10 @@ import routes from './routes';
 
 const app = express();
 
+if (config.nodeEnv === 'production') {
+  app.set('trust proxy', 1);
+}
+
 // HTTPS enforcement
 app.use(httpsRedirect);
 app.use(hstsHeader);
